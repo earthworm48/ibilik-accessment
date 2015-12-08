@@ -1,13 +1,17 @@
-<h1>Hello here <%=@user.name%></h1>
+<h1>Welcome Back <%=@user.name%></h1>
 
-<% @user.properties.each do |property|%>
-
-<a href="/properties/<%=property.id%>"><%=property.title%></a>
-
+<% if @user.properties.any?%>
+	<h2>This is your properties!</h2>
+	<% @user.properties.each do |property|%>
+		<a href="/properties/<%=property.id%>"><%=property.title%></a><br>
+	<%end%>
+<%else%>
+	<h2>No Property be posted yet!</h2>
 <%end%>
 
+
 <%if @user.bookings.any?%>
-	<h1>This is Your Booking</h1>
+	<h2>This is Your Booking</h2>
 	<% @user.bookings.each do |booking|%>
 		<p>From <%=booking.start_date%> </p>
 		<p>Until <%=booking.end_date%></p>

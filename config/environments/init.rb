@@ -22,6 +22,7 @@ require 'erb'
 require 'uri'
 require 'bcrypt'
 require 'byebug'
+require 'faker'
 ######################################################################
 
 
