@@ -17,6 +17,7 @@ end
 
 # properties profile page
 get '/properties/:property_id' do
+	# byebug
 	@user = User.find(session[:user_id])
 	@property = Property.find(params[:property_id])
 	

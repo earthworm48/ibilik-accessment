@@ -21,7 +21,8 @@
   	<% if logged_in?%>
   		<a href="/users/:id/logout">Log Out</a> |
   		<a href="/properties/new">Create Property</a> |
-  		<a href="/properties">View All Property</a>
+  		<a href="/properties">View All Property</a> |
+  		<a href="/users/<%=session[:user_id]%>"><%=User.find(session[:user_id]).name %> Profile </a>
   	<%end%>
 </head>
 

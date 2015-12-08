@@ -1,9 +1,20 @@
-<h1>All Properties</h1>
+<center>
+	<h1>All Properties</h1>
+</center>
 
-<%Property.all.each do |property|%>
+<%if Property.all.count != 0%>
+	<%Property.all.each do |property|%>
 
-<br>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a href="/properties/<%=property.id%>"><%=property.title%></a><br> by <a href="/users/<%=property.user.id%>"><%=property.user.name%></a>
+			</div>
+			<div class="panel-body">
+				<%=property.description%>
+			</div>
+		</div>
 
-<a href="/properties/<%=property.id%>"><%=property.title%></a>
-
+	<%end%>
+<%else%>
+	<h2> No Property Uploaded Yet </h2>
 <%end%>
