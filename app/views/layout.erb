@@ -18,6 +18,9 @@
 
   	<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 
+  	<% if logged_in?%>
+  		<a href="/users/:id/logout">Log Out</a>
+  	<%end%>
 </head>
 
 <body>

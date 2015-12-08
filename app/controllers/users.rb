@@ -26,5 +26,10 @@ post '/users/login' do
 		@error = "Wrong combination of e-mail and password"
 		erb :"static/error"
 	end
+end
 
+# Log out users
+get "/users/:id/logout" do
+	session[:user_id] = nil
+	redirect "/"
 end
