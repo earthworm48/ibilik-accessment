@@ -1,7 +1,17 @@
 # Create new bookings
 post '/bookings' do
 	@booking = Booking.create(start_date: params[:start_date], end_date: params[:end_date],user_id: session[:user_id], property_id: params[:property_id])
-	redirect "/users/#{session[:user_id]}"
+	# byebug
+	if !@booking.save
+		@property = @booking.property
+		# byebug
+		@error = "Start date must be later than end date"
+		# byebug
+		erb :"/properties/home"
+	else
+		redirect "/users/#{session[:user_id]}"
+	end
+	
 end
 
 # Edit bookings

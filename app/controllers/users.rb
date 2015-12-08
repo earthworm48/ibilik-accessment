@@ -18,13 +18,14 @@ post '/users/login' do
 	@user = User.find_by(email: params[:email]) 
 	if @user.nil?
 		@error = "No such email address"
-		erb :"static/error"
+		@user = User.new
+		erb :"static/index"
 	elsif @user.authenticate(params[:password])	
 		session[:user_id] = @user.id
 		redirect "/users/#{session[:user_id]}"
 	else
 		@error = "Wrong combination of e-mail and password"
-		erb :"static/error"
+		erb :"static/index"
 	end
 end
 

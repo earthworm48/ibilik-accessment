@@ -1,11 +1,35 @@
 <h1><%=@user.name%></h1>
 
+
+<%if !@booking.nil?%>
+	<% if @booking.errors.any?%>
+		<div class="Signup_Errors">
+		<% for message_error in @booking.errors.full_messages %>
+			<p><%=message_error %> </p>
+		<%end%>
+		</div>
+	<%end%>
+<%end%>
+
 <% if @user.properties.any?%>
 	<h2>This is <%=@user.name%> properties!</h2>
 	<% @user.properties.each do |property|%>
 		<a href="/properties/<%=property.id%>"><%=property.title%></a><br>
+		
+		<%if @user.id == session[:user_id]%>
+			<a href="/properties/<%=property.id%>/edit"><button>Edit</button></a>
+
+
+			<span><form action="/properties/<%=property.id%>" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="Delete Your Post">
+			</form></span>
+
+		<%end%>
 	<%end%>
+
 <%else%>
+
 	<h2>No Property be posted yet!</h2>
 <%end%>
 

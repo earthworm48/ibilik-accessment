@@ -3,6 +3,10 @@ by <%=@property.user.name%><br>
 
 <%=@property.description%><br>
 
+
+<h1><%=@error if @error %></h1>
+
+
 <%if current_user.id == @property.user.id%>
 	<a href="/properties/<%=@property.id%>/edit"><button>Edit</button></a>
 
@@ -27,6 +31,9 @@ by <%=@property.user.name%><br>
 <%@property.comments.each do |comment|%>
 
 	<%=comment.description%>
+	<br>
+	<p>by <a href="users/<%=comment.user.id%>"><%=comment.user.name%></a></p>
+
 	<%if comment.user.id == session[:user_id]%>
 		<a href="/comments/<%=comment.id%>/edit"><button>Edit</button></a>
 
@@ -45,11 +52,13 @@ by <%=@property.user.name%><br>
 
 	<form action="/bookings" method="POST">
 		<label>Start Date: </label>
-		<input type="text" name="start_date" required>
+		<input type="date" name="start_date" class="datepicker" required>
 		<label>End Date: </label>
-		<input type="text" name="end_date" required>
+		<input type="date" name="end_date" class="datepicker" required>
+
 		<input type="hidden" name="property_id" value="<%=@property.id%>">
 		<input type="submit" value="Confirm Your Booking!">
 	</form>
 
 <%end%>
+

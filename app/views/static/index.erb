@@ -1,6 +1,28 @@
 <div>
-<h1>ibilik</h1>
-<p>HomePage</p>
+
+<center>
+	<div class="header">
+		<h1>ibilik</h1>
+		<p>HomePage</p>
+	</div>
+</center>
+
+<center>
+	<div class="error">
+		<div class="log_in_errors">
+			<%= @error if @error %>
+		</div>
+
+		<% if @user.errors.any?%>
+			<div class="Signup_Errors">
+			<% for message_error in @user.errors.full_messages %>
+				<p><%=message_error %> </p>
+			<%end%>
+			</div>
+		<%end%>
+	</div>	
+</center>
+
 
 <center>
 	<div id="wrap">
