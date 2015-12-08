@@ -1,0 +1,12 @@
+<h1>Edit Booking Page</h1>
+
+<form action="/bookings/<%=@booking.id%>" method="post">
+	<input type="hidden" name="_method" value="patch" >
+	
+	<label>Start date: </label>
+	<input type="text" name="start_date" value="<%= @booking.start_date%>"><br>
+	<label>End Date: </label>
+	<input type="text" name="end_date" value="<%= @booking.end_date%>"><br>
+
+	<input type="submit" value="Done Editing">
+</form>

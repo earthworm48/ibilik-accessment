@@ -5,3 +5,20 @@
 <a href="/properties/<%=property.id%>"><%=property.title%></a>
 
 <%end%>
+
+<%if @user.bookings.any?%>
+	<h1>This is Your Booking</h1>
+	<% @user.bookings.each do |booking|%>
+		<p>From <%=booking.start_date%> </p>
+		<p>Until <%=booking.end_date%></p>
+		<p>You will stay in <%=booking.property.title%> </p>
+	<a href="/bookings/<%=booking.id%>/edit"><button>Edit Your Booking</button></a>
+	<span><form action="/bookings/<%=booking.id%>" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete Your Booking">
+	</form></span>
+
+	<%end%>
+<%else%>
+	<h1>No Booking Done Yet</h1>
+<%end%>

@@ -1,7 +1,6 @@
 <h1><%=@property.title%></h1><br>
 by <%=@property.user.name%><br>
 
-
 <%=@property.description%><br>
 
 <%if current_user.id == @property.user.id%>
@@ -37,4 +36,18 @@ by <%=@property.user.name%><br>
 	<%end%>
 
 	<br>
+<%end%>
+
+<%if current_user.id != @property.user.id%>
+	<h1>Book Now!</h1>
+
+	<form action="/bookings" method="POST">
+		<label>Start Date: </label>
+		<input type="text" name="start_date" required>
+		<label>End Date: </label>
+		<input type="text" name="end_date" required>
+		<input type="hidden" name="property_id" value="<%=@property.id%>">
+		<input type="submit" value="Confirm Your Booking!">
+	</form>
+
 <%end%>
