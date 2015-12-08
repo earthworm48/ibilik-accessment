@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 	validates :password, length: {minimum: 8}
 	validates_confirmation_of :password 
 	# :message => "should match confirmation"
+	has_many :properties
+	has_many :comments
+	has_many :bookings
 	
 	has_secure_password validations: false
 
