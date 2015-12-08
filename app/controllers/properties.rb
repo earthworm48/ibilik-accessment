@@ -22,21 +22,21 @@ end
 
 # Edit properties
 get '/properties/:property_id/edit' do
-	@properties = Property.find(params[:property_id])
+	@property = Property.find(params[:property_id])
 	erb :"properties/edit"
 end
 
 # Update properties
 patch "/properties/:property_id" do
-	properties = properties.find(params[:property_id])
-	properties.update(title: params[:title])
-	redirect "/properties/#{properties.id}"
+	property = Property.find(params[:property_id])
+	property.update(title: params[:title],description: params[:description])
+	redirect "/properties/#{property.id}"
 end
 
 # Delete properties
 delete "/properties/:property_id" do
-	properties = properties.find(params[:property_id])
+	property = Property.find(params[:property_id])
 	# byebug
-	properties.destroy
+	property.destroy
 	redirect "/users/#{session[:user_id]}" 	
 end

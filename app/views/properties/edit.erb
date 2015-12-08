@@ -1,1 +1,12 @@
 <h1>Edit Property Page</h1>
+
+<form action="/properties/<%=@property.id%>" method="post">
+	<input type="hidden" name="_method" value="patch" >
+	
+	<label>Title: </label>
+	<input type="text" name="title" value="<%= @property.title%>"><br>
+	<label>Description: </label>
+	<input type="text" name="description" value="<%= @property.description%>"><br>
+
+	<input type="submit" value="Done Editing">
+</form>
