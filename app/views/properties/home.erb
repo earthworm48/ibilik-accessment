@@ -47,8 +47,32 @@ by <%=@property.user.name%><br>
 	<br>
 <%end%>
 
+<h1> Who has booked here? </h1>
+
+<% if @property.bookings.any?%>
+
+	<% @property.bookings.each do |booking|%>
+
+
+		<p><%=booking.user.name%> will stay here from
+		<%=booking.start_date%> to 
+		<%=booking.end_date%></p>
+
+		<% if booking.user.id == session[:user_id]%>
+			<a href="/bookings/<%=booking.id%>/edit"><button>Edit Your Booking</button></a>
+				<span><form action="/bookings/<%=booking.id%>" method="post">
+					<input type="hidden" name="_method" value="delete">
+					<input type="submit" value="Delete Your Booking">
+				</form></span>
+		<%end%>
+
+	<%end%>
+
+<%end%>
+
 <%if current_user.id != @property.user.id%>
 	<h1>Book Now!</h1>
+	<h5 style="color:red"><strong>Please put end date after start date or else you can't make the booking</strong></h5>
 
 	<form action="/bookings" method="POST">
 		<label>Start Date: </label>
@@ -61,4 +85,7 @@ by <%=@property.user.name%><br>
 	</form>
 
 <%end%>
+
+
+
 

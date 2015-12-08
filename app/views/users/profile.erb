@@ -1,16 +1,6 @@
 <h1><%=@user.name%></h1>
 
 
-<%if !@booking.nil?%>
-	<% if @booking.errors.any?%>
-		<div class="Signup_Errors">
-		<% for message_error in @booking.errors.full_messages %>
-			<p><%=message_error %> </p>
-		<%end%>
-		</div>
-	<%end%>
-<%end%>
-
 <% if @user.properties.any?%>
 	<h2>This is <%=@user.name%> properties!</h2>
 	<% @user.properties.each do |property|%>
