@@ -32,7 +32,7 @@
 			<p>From <%=booking.start_date%> </p>
 			<p>Until <%=booking.end_date%></p>
 
-			<p>You will stay in <a href="/properties/<%=booking.property.id%>"><%=booking.property.title%></a> </p>
+			<p>I will stay in <a href="/properties/<%=booking.property.id%>"><%=booking.property.title%></a> </p>
 
 				<a href="/bookings/<%=booking.id%>/edit"><button>Edit Your Booking</button></a>
 				<span><form action="/bookings/<%=booking.id%>" method="post">
