@@ -1,9 +1,40 @@
 <h1><%=@property.title%></h1><br>
-by <%=@user.name%><br>
+by <%=@property.user.name%><br>
 
 
 <%=@property.description%><br>
 
 <%if current_user.id == @property.user.id%>
 	<a href="/properties/<%=@property.id%>/edit"><button>Edit</button></a>
+
+
+	<span><form action="/properties/<%=@property.id%>" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete Your Post">
+	</form></span>
+<%else%>
+
+<form action="/comments" method="post">
+	<label> Your Comment: </label>
+	<input type="text" name="description">
+	<input type="hidden" name="property_id" value="<%=@property.id%>">
+	<input type="submit" value="Post Your Comment">
+</form>
+
+<%end%>
+
+<%@property.comments.each do |comment|%>
+
+	<%=comment.description%>
+	<%if comment.user.id == session[:user_id]%>
+		<a href="/comments/<%=comment.id%>/edit"><button>Edit</button></a>
+
+		<span><form action="/comments/<%=comment.id%>" method="post">
+		<input type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete Your Comment">
+	</form></span>
+
+	<%end%>
+
+	<br>
 <%end%>

@@ -6,6 +6,10 @@ post '/properties' do
 	redirect "/properties/#{@property.id}"
 end
 
+get '/properties' do
+	erb :"properties/all"
+end
+
 # Go to new properties page
 get '/properties/new' do
 	erb :"properties/new"
@@ -18,7 +22,6 @@ get '/properties/:property_id' do
 	
 	erb :"properties/home"
 end
-
 
 # Edit properties
 get '/properties/:property_id/edit' do
@@ -36,7 +39,6 @@ end
 # Delete properties
 delete "/properties/:property_id" do
 	property = Property.find(params[:property_id])
-	# byebug
 	property.destroy
 	redirect "/users/#{session[:user_id]}" 	
 end

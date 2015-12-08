@@ -1,1 +1,7 @@
 <h1>Hello here <%=@user.name%></h1>
+
+<% @user.properties.each do |property|%>
+
+<a href="/properties/<%=property.id%>"><%=property.title%></a>
+
+<%end%>

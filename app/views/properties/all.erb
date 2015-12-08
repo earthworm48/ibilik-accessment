@@ -1,0 +1,9 @@
+<h1>All Properties</h1>
+
+<%Property.all.each do |property|%>
+
+<br>
+
+<a href="/properties/<%=property.id%>"><%=property.title%></a>
+
+<%end%>
