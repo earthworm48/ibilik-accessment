@@ -1,0 +1,9 @@
+<h1><%=@property.title%></h1><br>
+by <%=@user.name%><br>
+
+
+<%=@property.description%><br>
+
+<%if current_user.id == @property.user.id%>
+	<a href="/properties/<%=@property.id%>/edit"><button>Edit</button></a>
+<%end%>
